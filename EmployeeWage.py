@@ -4,29 +4,36 @@ import random
 
 class Employee:
 
-    def daily_wage(self):
+    def __init__(self, name):
+        self.name = name
+
+    def wage_for_month(self):
         """
-        Function calculates daily wage
-        :return: Employee Attendance
+        Function calculates wage of month
+        :return: Employee Wage for the month
         """
         is_full_time = 1
         is_part_time = 2
         emp_rate_per_hour = 20
-        emp_hrs = 0
-        emp_check = random.randrange(0, 3)
-        if emp_check == is_full_time:
-            print("Employee is present")
-            emp_hrs = 8
-        elif emp_check == is_part_time:
-            print("Employee is part time")
-            emp_hrs = 4
-        else:
-            print("Employee is absent")
+        num_of_working_days = 20
+        total_emp_wage = 0
+        for days in range(num_of_working_days):
+            emp_check = random.randrange(0, 3)
+            if emp_check == is_full_time:
+                emp_hrs = 8
+            elif emp_check == is_part_time:
+                emp_hrs = 4
+            else:
+                emp_hrs = 0
 
-        emp_wage = emp_hrs * emp_rate_per_hour
-        print("Employee Wage : ", emp_wage)
+            emp_wage = emp_hrs * emp_rate_per_hour
+            total_emp_wage += emp_wage
+
+        print("Daily wage of {} is : {}".format(self.name, total_emp_wage))
 
 
 if __name__ == "__main__":
-    emp = Employee()
-    emp.daily_wage()
+    emp1 = Employee("Lokesh")
+    emp2 = Employee("Loki")
+    emp1.wage_for_month()
+    emp2.wage_for_month()
